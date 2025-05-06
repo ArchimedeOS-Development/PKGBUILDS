@@ -1,0 +1,15 @@
+pkgname=aos-update
+pkgver=1.0
+pkgrel=1
+pkgdesc="Outil de mise à jour système pour ArchimedeOS"
+arch=('any')
+url="file///var/cache/archimedeos-repo/x86_64"  # Remplace par ton vrai site si besoin
+license=('GPL')
+depends=('bash' 'pacman')
+provides=('aos-update')
+source=('aos-update')
+sha256sums=('SKIP')  # On utilisera SKIP pour ce petit script
+
+package() {
+  install -Dm755 "${srcdir}/aos-update" "${pkgdir}/usr/bin/aos-update"
+}
