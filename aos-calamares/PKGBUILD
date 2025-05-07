@@ -1,0 +1,20 @@
+pkgname=calamares
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Calamares installer for ArchimedeOS"
+arch=('any')
+license=('GPL')
+depends=('bash' 'calamares')
+makedepends=('git' 'cmake' 'qt5-base' 'qt5-tools' 'qt5-svg' 'qt5-xmlpatterns' 'qt5-webengine' 'qt5-webview' 'qt5-quickcontrols2')
+conflicts=('calamares-git')
+provides=('calamares')
+url="https://github.com/ArchimedeOS-Development/calamares"
+sha256sums=('SKIP')
+
+build() {
+
+}
+
+package() {
+
+}
