@@ -10,3 +10,11 @@ conflicts=('calamares-git')
 provides=('calamares')
 url="file///var/cache/archimedeos-repo/x86_64"
 sha256sums=('SKIP')
+
+build() {
+
+}
+
+package() {
+    
+}
