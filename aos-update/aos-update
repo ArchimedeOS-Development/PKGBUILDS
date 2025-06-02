@@ -1,0 +1,26 @@
+#!/bin/bash
+
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+CYAN="\e[36m"
+BOLD="\e[1m"
+RESET="\e[0m"
+
+clear
+echo -e "${CYAN}${BOLD}🔄 ArchimedeOS - Mise à jour système${RESET}\n"
+
+echo -e "${YELLOW}➡ Mise à jour des paquets officiels (pacman)...${RESET}"
+sudo pacman -Syu
+
+if command -v yay &>/dev/null; then
+    echo -e "\n${YELLOW}➡ Mise à jour des paquets AUR (yay)...${RESET}"
+    yay -Syu --noconfirm
+elif command -v paru &>/dev/null; then
+    echo -e "\n${YELLOW}➡ Mise à jour des paquets AUR (paru)...${RESET}"
+    paru -Syu --noconfirm
+else
+    echo -e "\n${RED}❌ Aucun helper AUR trouvé (yay ou paru manquant).${RESET}"
+fi
+
+echo -e "\n${GREEN}${BOLD}✅ Système ArchimedeOS à jour !${RESET}"
