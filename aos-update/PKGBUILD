@@ -1,7 +1,7 @@
 # Maintainer Killian Prin-abeil <killian@archimedeos.org>
 pkgname=aos-update
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Outil de mise à jour système pour ArchimedeOS"
 arch=('any')
 url="https://github.com/ArchimedeOS-Development/aos-bash-command"
@@ -9,7 +9,7 @@ license=('GPL')
 depends=('bash' 'pacman')
 provides=('aos-update')
 source=('aos-update')
-sha256sums=('SKIP')
+sha256sums=('7005b8dc7cd7a60ccce332a7080d5121b272c36af102767039d941c04fca62ec')
 
 package() {
   install -Dm755 "${srcdir}/aos-update" "${pkgdir}/usr/bin/aos-update"
