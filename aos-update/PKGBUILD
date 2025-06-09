@@ -1,16 +1,32 @@
-# Maintainer Killian Prin-abeil <killian@archimedeos.org>
+# Maintainer: Killian Prin-abeil <killian@archimedeos.org>
+# Contributor: ArchimedeOS Development Team <hi@archimedeos.org>
+
 pkgname=aos-update
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Outil de mise à jour système pour ArchimedeOS"
 arch=('any')
 url="https://github.com/ArchimedeOS-Development/aos-bash-command"
-license=('GPL')
+license=('GPL3')
 depends=('bash' 'pacman')
+optdepends=('yay: Support pour la mise à jour des paquets AUR'
+            'paru: Support alternatif pour la mise à jour des paquets AUR')
 provides=('aos-update')
+backup=()
 source=('aos-update')
-sha256sums=('7005b8dc7cd7a60ccce332a7080d5121b272c36af102767039d941c04fca62ec')
+sha256sums=('21b988957eab22b37b92610ae4b723c530393c4f2faa403de29d855d5da9a87a')
 
 package() {
-  install -Dm755 "${srcdir}/aos-update" "${pkgdir}/usr/bin/aos-update"
+    # Installation du script principal
+    install -Dm755 "${srcdir}/aos-update" "${pkgdir}/usr/bin/aos-update"
+    
+    # Création du répertoire de documentation
+    install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
+    
+    # Installation de la documentation
+    echo "ArchimedeOS Update Tool v${pkgver}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "=================================" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "Un outil de mise à jour système pour ArchimedeOS" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "qui gère à la fois les paquets officiels et AUR." >> "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
