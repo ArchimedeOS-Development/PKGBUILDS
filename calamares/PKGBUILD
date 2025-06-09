@@ -1,31 +1,55 @@
+# Maintainer: Killian Prin-abeil <killian@archimedeos.org>
+# Contributor: ArchimedeOS Development Team <hi@archimedeos.org>
+
 pkgname=calamares
 pkgver=1.0.0
 pkgrel=2
-pkgdesc="Calamares installer for ArchimedeOS"
-arch=('any')
+pkgdesc="Installateur graphique pour ArchimedeOS"
+arch=('x86_64')
 url="https://github.com/ArchimedeOS-Development/calamares"
-license=('GPL')
-makedepends=('git' 'cmake' 'qt5-webengine' 'qt5-webview' 'qt5-xmlpatterns' 'boost' 'extra-cmake-modules' 'polkit-qt5' 'kcoreaddons')
-conflicts=('calamares-git')
+license=('GPL3')
+depends=('qt5-base' 'qt5-svg' 'qt5-tools' 'qt5-xmlpatterns' 'qt5-webengine' 'qt5-webview'
+         'kcoreaddons' 'kconfig' 'ki18n' 'kservice' 'kwidgetsaddons' 'kpmcore'
+         'boost' 'yaml-cpp' 'networkmanager' 'upower' 'kiconthemes' 'kio'
+         'solid' 'kxmlgui' 'kparts' 'knewstuff' 'python' 'polkit-qt5')
+makedepends=('git' 'cmake' 'extra-cmake-modules' 'qt5-tools' 'python-pyqt5'
+             'python-yaml' 'python-setuptools' 'python-mock' 'python-jsonschema')
+optdepends=('python-pyqt5: pour les modules Python'
+            'python-yaml: pour la configuration YAML'
+            'python-setuptools: pour les modules Python'
+            'python-mock: pour les tests'
+            'python-jsonschema: pour la validation JSON')
 provides=('calamares')
-source=("git+https://github.com/ArchimedeOS-Development/calamares.git")
+conflicts=('calamares-git')
+source=("git+${url}.git")
 sha256sums=('SKIP')
 
+prepare() {
+    cd "${srcdir}/${pkgname}"
+    mkdir -p build
+}
+
 build() {
-  cd "$srcdir/calamares"
+    cd "${srcdir}/${pkgname}/build"
 
-  mkdir -p build
-  cd build
+    cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DWITH_PYTHON=ON \
+        -DWITH_KF5=ON \
+        -DWITH_WEBVIEW=ON \
+        -DWITH_CRASHREPORTER=ON \
+        -DWITH_PYTHONQT=ON \
+        -DWITH_APPSTREAM=ON \
+        -DWITH_QT5=ON
 
-  cmake .. \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DWITH_PYTHON=ON
-
-  make
+    make
 }
 
 package() {
-  cd "$srcdir/calamares/build"
-  make DESTDIR="$pkgdir" install
+    cd "${srcdir}/${pkgname}/build"
+    make DESTDIR="${pkgdir}" install
+
+    install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
+    cp -r "${srcdir}/${pkgname}/doc"/* "${pkgdir}/usr/share/doc/${pkgname}/" || true
 }
