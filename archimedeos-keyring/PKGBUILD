@@ -15,13 +15,10 @@ source=('archimedeos.gpg')
 sha256sums=('c6aa314396784dd97f54afc47c11016f309c66ebe55b78b31693ba55bff4f326')
 
 package() {
-    # Installation de la clé GPG
     install -Dm644 archimedeos.gpg "$pkgdir/usr/share/pacman/keyrings/archimedeos.gpg"
-    
-    # Création du répertoire de documentation
+
     install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
-    
-    # Installation de la documentation
+
     echo "ArchimedeOS Keyring v${pkgver}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "===========================" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "" >> "${pkgdir}/usr/share/doc/${pkgname}/README"

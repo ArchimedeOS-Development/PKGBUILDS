@@ -17,13 +17,10 @@ source=('aos-update')
 sha256sums=('21b988957eab22b37b92610ae4b723c530393c4f2faa403de29d855d5da9a87a')
 
 package() {
-    # Installation du script principal
     install -Dm755 "${srcdir}/aos-update" "${pkgdir}/usr/bin/aos-update"
-    
-    # Création du répertoire de documentation
+
     install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
-    
-    # Installation de la documentation
+
     echo "ArchimedeOS Update Tool v${pkgver}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "=================================" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
