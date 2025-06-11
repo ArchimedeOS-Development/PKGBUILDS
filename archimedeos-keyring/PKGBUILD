@@ -2,17 +2,17 @@
 # Contributor: ArchimedeOS Development Team <hi@archimedeos.org>
 
 pkgname=archimedeos-keyring
-pkgver=1
-pkgrel=5
+pkgver=20250612
+pkgrel=1
 pkgdesc='ArchimedeOS keyring'
 arch=('any')
 url='https://archimedeos.org'
 license=('GPL3')
 install="${pkgname}.install"
-source=('Makefile'
-        'archimedeos.gpg'
-        'archimedeos-revoked'
-        'archimedeos-trusted')
+source=('https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/Makefile'
+        'https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/archimedeos.gpg'
+        'https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/archimedeos-revoked'
+        'https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/archimedeos-trusted')
 validpgpkeys=('984702CFCD8EBBC5F4C0A7B200D365D753B27ED7')  # Killian Prin-abeil
 sha256sums=('4d20ef0acec7f9030881714bc21cf7ef6c50e96e673cc053b32071639b770c15'
             'c6aa314396784dd97f54afc47c11016f309c66ebe55b78b31693ba55bff4f326'
