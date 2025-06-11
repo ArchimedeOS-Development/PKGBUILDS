@@ -21,7 +21,7 @@ package() {
 
     install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
 
-    echo "ArchimedeOS Update Tool v${pkgver}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "ArchimedeOS Update Tool v${pkgver}-${pkgrel}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "=================================" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
     echo "Un outil de mise à jour système pour ArchimedeOS" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
