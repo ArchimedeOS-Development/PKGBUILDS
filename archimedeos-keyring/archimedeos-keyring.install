@@ -1,6 +1,9 @@
 post_upgrade() {
     if /usr/bin/pacman-key --list-keys >/dev/null 2>&1; then
         /usr/bin/pacman-key --populate archimedeos
+        # Récupérer automatiquement la clé et la signer
+        KEY=$(sed 's/:.*$//' /usr/share/pacman/keyrings/archimedeos-trusted)
+        /usr/bin/pacman-key --lsign-key "$KEY"
     else
         echo ">>> Run 'pacman-key --init' to set up your pacman keyring."
         echo ">>> Then run 'pacman-key --populate archimedeos' to install the ArchimedeOS keyring."
