@@ -1,0 +1,28 @@
+# Maintainer: Killian Prin-abeil <killian@archimedeos.org>
+# Contributor: ArchimedeOS Development Team <hi@archimedeos.org>
+
+pkgname=aos-forge
+pkgver=1.0
+pkgrel=1
+pkgdesc="Ajouter/Maintenir vos container archimedeos"
+arch=('any')
+url="https://github.com/ArchimedeOS-Development/aos-bash-command"
+license=('GPL3')
+depends=('bash' 'pacman')
+optdepends=('yay: Support pour la mise à jour des paquets AUR'
+            'paru: Support alternatif pour la mise à jour des paquets AUR')
+provides=('aos-forge')
+backup=()
+source=('aos-forge')
+sha256sums=('SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/aos-forge" "${pkgdir}/usr/bin/aos-forge"
+
+    install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
+
+    echo "ArchimedeOS Container Tool v${pkgver}-${pkgrel}" > "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "=================================" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+    echo "Outil pour ajouter/maintenir vos container archimedeos" >> "${pkgdir}/usr/share/doc/${pkgname}/README"
+}
