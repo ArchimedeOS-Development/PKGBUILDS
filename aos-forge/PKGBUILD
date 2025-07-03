@@ -14,7 +14,7 @@ optdepends=('yay: Support pour la mise à jour des paquets AUR'
 provides=('aos-forge')
 backup=()
 source=('aos-forge')
-sha256sums=('SKIP')
+sha256sums=('1625837697ffbc4338afece526fbf5b1edc74128c19ae9c3a921148952a76ed8')
 
 package() {
     install -Dm755 "${srcdir}/aos-forge" "${pkgdir}/usr/bin/aos-forge"
