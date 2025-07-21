@@ -36,12 +36,10 @@ build() {
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_BUILD_TYPE=Release \
         -DWITH_PYTHON=ON \
-        -DWITH_KF5=ON \
         -DWITH_WEBVIEW=ON \
         -DWITH_CRASHREPORTER=ON \
-        -DWITH_PYTHONQT=ON \
         -DWITH_APPSTREAM=ON \
-        -DWITH_QT5=ON
+        -DWITH_QT6=ON
 
     make
 }
