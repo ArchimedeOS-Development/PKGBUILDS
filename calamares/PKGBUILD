@@ -1,26 +1,23 @@
-# Maintainer: Killian Prin-abeil <killian@archimedeos.org>
-# Contributor: ArchimedeOS Development Team <hi@archimedeos.org>
+# Maintainer: ArchimedeOS Development Team <hi@archimedeos.org>
+# Calamares installer (fork) configuré pour ArchimedeOS
 
 pkgname=calamares
 pkgver=1.0.0
-pkgrel=3
-pkgdesc="Installateur graphique pour ArchimedeOS"
+pkgrel=4
+release_name="ArchimedeOS-1.0"
+pkgdesc="Calamares installer for ArchimedeOS"
 arch=('x86_64')
 url="https://github.com/ArchimedeOS-Development/calamares"
 license=('GPL3')
-depends=('qt5-base' 'qt5-svg' 'qt5-tools' 'qt5-xmlpatterns' 'qt5-webengine' 'qt5-webview'
-         'kcoreaddons' 'kconfig' 'ki18n' 'kservice' 'kwidgetsaddons' 'kpmcore'
-         'boost' 'yaml-cpp' 'networkmanager' 'upower' 'kiconthemes' 'kio'
-         'solid' 'kxmlgui' 'kparts' 'knewstuff' 'python' 'polkit-qt5')
-makedepends=('git' 'cmake' 'extra-cmake-modules' 'qt5-tools' 'python-pyqt5'
-             'python-yaml' 'python-setuptools' 'python-mock' 'python-jsonschema')
-optdepends=('python-pyqt5: pour les modules Python'
-            'python-yaml: pour la configuration YAML'
-            'python-setuptools: pour les modules Python'
-            'python-mock: pour les tests'
-            'python-jsonschema: pour la validation JSON')
-provides=('calamares')
+makedepends=('git' 'cmake' 'extra-cmake-modules' 'python-jsonschema' 'python-pyaml' 'python-unidecode' 'gawk')
 conflicts=('calamares-git')
+depends=(
+  'qt6-svg' 'qt6-webengine' 'yaml-cpp' 'networkmanager' 'upower' 'kcoreaddons' 'kconfig' 'ki18n' 'kservice'
+  'kwidgetsaddons' 'kpmcore' 'squashfs-tools' 'rsync' 'pybind11' 'cryptsetup' 'doxygen' 'dmidecode'
+  'gptfdisk' 'hwinfo' 'kparts' 'polkit-qt6' 'python' 'solid' 'qt6-tools' 'libpwquality' 'ckbcomp' 'qt6-declarative'
+)
+provides=("calamares")
+options=(!strip !emptydirs)
 source=("git+${url}.git")
 sha256sums=('SKIP')
 
@@ -30,24 +27,17 @@ prepare() {
 }
 
 build() {
-    cd "${srcdir}/${pkgname}/build"
-
-    cmake .. \
-        -DCMAKE_INSTALL_PREFIX=/usr \
+    cmake -B build -S "${srcdir}/${pkgname}" \
+        -DWITH_QT6=ON \
         -DCMAKE_BUILD_TYPE=Release \
-        -DWITH_PYTHON=ON \
-        -DWITH_WEBVIEW=ON \
-        -DWITH_CRASHREPORTER=ON \
-        -DWITH_APPSTREAM=ON \
-        -DWITH_QT6=ON
-
-    make
+        -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DINSTALL_CONFIG=OFF
+    make -C build
 }
 
 package() {
-    cd "${srcdir}/${pkgname}/build"
-    make DESTDIR="${pkgdir}" install
-
+    make -C build DESTDIR="${pkgdir}" install
     install -dm755 "${pkgdir}/usr/share/doc/${pkgname}"
     cp -r "${srcdir}/${pkgname}/doc"/* "${pkgdir}/usr/share/doc/${pkgname}/" || true
 }
