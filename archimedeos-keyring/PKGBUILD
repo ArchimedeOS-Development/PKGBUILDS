@@ -3,7 +3,7 @@
 
 pkgname=archimedeos-keyring
 pkgver=20250612
-pkgrel=3
+pkgrel=4
 pkgdesc='ArchimedeOS keyring'
 arch=('any')
 url='https://archimedeos.org'
