@@ -14,10 +14,10 @@ source=('https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-k
         'https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/archimedeos-revoked'
         'https://raw.githubusercontent.com/ArchimedeOS-Development/archimedeos-keyring/main/archimedeos-trusted')
 validpgpkeys=('6C250CE3FE1635D3A3346BDD7F068AC1F1E5B246')  # Killian Prin-abeil
-sha256sums=('e3b52c88322862f2d45239b155f931fee56dd7a0f9ff0ae1fbde4f03b56aeb1d'
+sha256sums=('28a103860de9094df8b84e8065c1cace393ba9087aa17de0abdc47ba7fef86fb'
             '67003803912283904992564eef9d595d7140aca44011b78dc50b4d98bc5bf4b1'
             'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
-            '21ef01416c5f50117a6550168e62d20e649a2089183fe1f4e0cdffce1e2547c7')
+            '871ecb52a48a885f039d3d935f1f8c453fa978b6ad8968cec051dd947f13ecbc')
 
 package() {
     cd "${srcdir}"
